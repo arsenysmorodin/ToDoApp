@@ -1,10 +1,8 @@
 <template>
     <div class="app">
-        <div>
-            <add-task-form></add-task-form>
-            <task-list></task-list>
-        </div>
-        <add-list-form></add-list-form>
+        <add-task-form></add-task-form>
+        <task-list></task-list>
+        <!-- <add-list-form></add-list-form> -->
     </div>
 </template>
   
@@ -23,15 +21,22 @@ export default {
 </script>
   
 <style lang="scss">
+@import "./style/mixins.scss";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Ubuntu';
 }
 
 .app {
+    padding: 50px 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background: #38404B;
+    background: $background-color;
 }
 </style>

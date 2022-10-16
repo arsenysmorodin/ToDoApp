@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div>
+    <div class="tasks-container">
       <task v-for="task in $store.state.tasks" @click="toogleTask(task)" :key="task.id" :task="task">
-        <span v-if="task.done">done</span>
-        {{ task.name }}
+
       </task>
     </div>
   </div>
@@ -24,5 +23,10 @@ export default {
 </script>
   
 <style>
-
+.tasks-container {
+  padding: 100px 100px 0 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 </style>
