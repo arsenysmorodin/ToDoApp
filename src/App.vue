@@ -1,30 +1,37 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <div class="app">
+        <div>
+            <add-task-form></add-task-form>
+            <task-list></task-list>
+        </div>
+        <add-list-form></add-list-form>
+    </div>
 </template>
-
+  
+<script>
+import addTaskForm from "./components/addTaskForm.vue";
+import taskList from "./components/taskList.vue";
+import addListForm from "./components/addListForm.vue";
+export default {
+    name: "App",
+    components: {
+        addTaskForm,
+        addListForm,
+        taskList,
+    },
+};
+</script>
+  
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.app {
+    height: 100vh;
+    width: 100vw;
+    background: #38404B;
 }
 </style>
