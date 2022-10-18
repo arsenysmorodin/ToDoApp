@@ -26,7 +26,8 @@ export default {
 .tasks-container {
   padding: 100px 100px 0 100px;
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 60px;
 }
 </style>

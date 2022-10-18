@@ -5,24 +5,68 @@ export default createStore({
     tasks: [
       {
         id: 1,
-        name: "buy a bread",
+        name: "Buy a bread",
         done: false,
-        list: "default"
+        list: "Routine"
       },
       {
         id: 2,
-        name: "made hw",
+        name: "Made hw",
         done: false,
-        list: "default"
+        list: "Priority"
       },
       {
         id: 3,
-        name: "build a house",
+        name: "Write CV",
         done: false,
-        list: "default"
-      }
+        list: "Work"
+      },
+      {
+        id: 4,
+        name: "Feed the cat",
+        done: false,
+        list: "Routine"
+      },
+      {
+        id: 5,
+        name: "Learn VueJS",
+        done: false,
+        list: "Work"
+      },
+      {
+        id: 6,
+        name: "Buy a laptop",
+        done: false,
+        list: "Work"
+      },
+      {
+        id: 7,
+        name: "Download VSCode",
+        done: false,
+        list: "Work"
+      },
+      {
+        id: 8,
+        name: "Meet Jack and Ann",
+        done: false,
+        list: "Priority"
+      },
+      {
+        id: 9,
+        name: "Watch TV Show",
+        done: false,
+        list: "Default"
+      },
+      {
+        id: 10,
+        name: "Find a new series",
+        done: false,
+        list: "Default"
+      },
+
     ],
-    lists: ["default", "priority", "work"]
+    menuVisibilityStatus: false,
+    lists: ["Default", "Priority", "Work", "Routine"]
   },
   mutations: {
     addTask(state, task) {
@@ -41,6 +85,10 @@ export default createStore({
     deleteTask(state, task) {
       let filteredTasks = state.tasks.filter((item) => item.id !== task.id);
       state.tasks = filteredTasks;
+    },
+    changeMenuVisibilityStatus(state) {
+      state.menuVisibilityStatus = !state.menuVisibilityStatus;
+      console.log('changeMenuVisibilityStatus')
     }
   },
   actions: {
@@ -55,6 +103,9 @@ export default createStore({
     },
     deleteTask({ commit }, task) {
       commit("deleteTask", task);
+    },
+    changeMenuVisibilityStatus({ commit }) {
+      commit('changeMenuVisibilityStatus')
     }
   },
   getters: {},

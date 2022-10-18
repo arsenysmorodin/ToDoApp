@@ -1,21 +1,19 @@
 <template>
     <div class="app">
-        <add-task-form></add-task-form>
-        <task-list></task-list>
-        <!-- <add-list-form></add-list-form> -->
+        <nav-burger></nav-burger>
+        <menuOpen v-if="$store.state.menuVisibilityStatus"></menuOpen>
+        <router-view></router-view>
     </div>
 </template>
   
 <script>
-import addTaskForm from "./components/addTaskForm.vue";
-import taskList from "./components/taskList.vue";
-import addListForm from "./components/addListForm.vue";
+import navBurger from "./components/navBurger.vue";
+import menuOpen from "./components/menu.vue";
 export default {
     name: "App",
     components: {
-        addTaskForm,
-        addListForm,
-        taskList,
+        navBurger,
+        menuOpen,
     },
 };
 </script>
@@ -32,6 +30,7 @@ export default {
 }
 
 .app {
+    position: relative;
     padding: 50px 50px 50px 50px;
     display: flex;
     flex-direction: column;

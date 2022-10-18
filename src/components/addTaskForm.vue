@@ -20,7 +20,7 @@ export default {
         name: "",
         list: "",
       },
-      placeholders: ['Buy a bread...', 'Build a house...', 'Create a document...', 'Find a job...', 'Earn 1 million...', 'Learn Eanglish...'],
+      // placeholders: ['Buy a bread...', 'Build a house...', 'Create a document...', 'Find a job...', 'Earn 1 million...', 'Learn Eanglish...'],
       currentPlaceholder: "Add task...",
     };
   },
@@ -34,15 +34,20 @@ export default {
     changeList(event) {
       this.list = event.target.value;
     },
-    changePlaceholder() { //TODO!
-      for (let i = 0; i < this.placeholders.length; i++)
-        setInterval(() => {
-          this.currentPlaceholder = this.placeholders[i];
-        }, 2000)
-    }
+    //TODO!
+    // changePlaceholder() {
+    //   for (let i = 0; i < this.placeholders.length; i++) {
+    //     setInterval(() => {
+    //       this.currentPlaceholder = this.placeholders[i];
+    //       if (i = this.placeholders.length - 1) {
+    //         i = 0;
+    //       }
+    //     }, 2000)
+    //   }
+    // }
   },
   mounted() {
-    this.changePlaceholder();
+    // this.changePlaceholder();
   }
 };
 </script>

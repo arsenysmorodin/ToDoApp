@@ -1,7 +1,7 @@
 <template>
   <div class="task" :class="{ task_done: task.done }">
     <div class="task__circle"></div>
-    <span class="task__name">{{ task.name }} ({{ task.list }})</span>
+    <span class="task__name">{{ task.name }}</span>
     <button class="task__btn" @click="deleteTask(task)"></button>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     deleteTask(task) {
-      this.$store.commit("deleteTask", task);
+      this.$store.dispatch("deleteTask", task);
     },
   },
 };
@@ -31,6 +31,7 @@ export default {
   border-radius: 16px;
   width: 450px;
   height: 60px;
+  cursor: pointer;
   @include shadowOuter;
 
   &_done {
@@ -67,7 +68,7 @@ export default {
     background-image: url(@/image/del.png);
     background-size: 18px;
     background-position: center;
-    border: none
+    border: none;
   }
 }
 </style>
