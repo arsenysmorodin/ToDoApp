@@ -1,5 +1,7 @@
 # todo-app
 
+Live demo: https://todoapp-theta-ashy.vercel.app/
+
 ## Project setup
 ```
 npm install
