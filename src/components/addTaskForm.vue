@@ -1,21 +1,46 @@
 <template>
   <div class="add-task">
-    <input class="add-task__input" :placeholder="currentPlaceholder" type="text" v-model="newTodo" />
-    <select class="add-task__select" name="list" @change="changeList($event)">
-      <option class="add-task__option" :value="item" v-for="item in $store.state.lists" :key="item">
+    <input
+      class="add-task__input"
+      :placeholder="currentPlaceholder"
+      type="text"
+      v-model="newTodo"
+    />
+    <select
+      v-if="this.$route.path == ('/' || '')"
+      class="add-task__select"
+      name="list"
+      @change="changeList($event)"
+    >
+      <option
+        class="add-task__option"
+        :value="item"
+        v-for="item in $store.state.lists"
+        :key="item"
+      >
         {{ item }}
+      </option>
+    </select>
+    <select
+      v-else
+      class="add-task__select"
+      name="list"
+      @change="changeList($event)"
+    >
+      <option class="add-task__option" :value="choosenListByPath">
+        {{ choosenListByPath }}
       </option>
     </select>
     <button class="add-task__btn" @click="addTask"></button>
   </div>
 </template>
-  
+
 <script>
 export default {
   data() {
     return {
       newTodo: "",
-      list: "default",
+      list: "Default",
       task: {
         name: "",
         list: "",
@@ -23,6 +48,11 @@ export default {
       // placeholders: ['Buy a bread...', 'Build a house...', 'Create a document...', 'Find a job...', 'Earn 1 million...', 'Learn Eanglish...'],
       currentPlaceholder: "Add task...",
     };
+  },
+  computed: {
+    choosenListByPath() {
+      return this.$route.path.slice(1);
+    },
   },
   methods: {
     addTask() {
@@ -34,6 +64,7 @@ export default {
     changeList(event) {
       this.list = event.target.value;
     },
+
     //TODO!
     // changePlaceholder() {
     //   for (let i = 0; i < this.placeholders.length; i++) {
@@ -48,10 +79,13 @@ export default {
   },
   mounted() {
     // this.changePlaceholder();
-  }
+  },
+  updated() {
+    this.list = this.$route.path.slice(1);
+  },
 };
 </script>
-  
+
 <style scoped lang="scss">
 @import "@/style/mixins.scss";
 
@@ -104,11 +138,11 @@ export default {
     border-radius: 50%;
     color: #757575;
     background-color: $background-color;
-    background-image: url('@/image/plus.png');
+    background-image: url("@/image/plus.png");
     background-size: 24px;
     background-repeat: no-repeat;
     background-position: center;
-    @include shadowOuter
+    @include shadowOuter;
   }
 }
 </style>
