@@ -6,5 +6,4 @@ import store from './store'
 createApp(App).use(store).use(router).mount('#app')
 
 // TODO:
-// 1. Select == list in TaskIDList;
-// 2. Complited task shows in the bottom
+// 1. Complited task shows in the bottom
