@@ -12,7 +12,7 @@ export default createStore({
       {
         id: 2,
         name: "Made hw",
-        done: false,
+        done: true,
         list: "Priority",
       },
       {
@@ -30,7 +30,7 @@ export default createStore({
       {
         id: 5,
         name: "Learn VueJS",
-        done: false,
+        done: true,
         list: "Work",
       },
       {
@@ -42,7 +42,7 @@ export default createStore({
       {
         id: 7,
         name: "Download VSCode",
-        done: false,
+        done: true,
         list: "Work",
       },
       {
@@ -73,6 +73,7 @@ export default createStore({
         id: Date.now(),
         name: task.name,
         list: task.list,
+        done: false,
       });
     },
     addList(state, newValue) {
@@ -107,6 +108,15 @@ export default createStore({
       commit("changeMenuVisibilityStatus");
     },
   },
-  getters: {},
+  getters: {
+    doneTasks(state) {
+      let doneTasks = state.tasks.filter(task => task.done === true);
+      return doneTasks;
+    },
+    inProgressTasks(state) {
+      let inProgressTasks = state.tasks.filter(task => task.done === false);
+      return inProgressTasks;
+    },
+  },
   modules: {},
 });

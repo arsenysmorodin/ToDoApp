@@ -1,32 +1,13 @@
 <template>
   <div class="add-task">
-    <input
-      class="add-task__input"
-      :placeholder="currentPlaceholder"
-      type="text"
-      v-model="newTodo"
-    />
-    <select
-      v-if="this.$route.path == ('/' || '')"
-      class="add-task__select"
-      name="list"
-      @change="changeList($event)"
-    >
-      <option
-        class="add-task__option"
-        :value="item"
-        v-for="item in $store.state.lists"
-        :key="item"
-      >
+    <input class="add-task__input" :placeholder="currentPlaceholder" @keyup.enter="addTask" type="text"
+      v-model="newTodo" />
+    <select v-if="this.$route.path == ('/' || '')" class="add-task__select" name="list" @change="changeList($event)">
+      <option class="add-task__option" :value="item" v-for="item in $store.state.lists" :key="item">
         {{ item }}
       </option>
     </select>
-    <select
-      v-else
-      class="add-task__select"
-      name="list"
-      @change="changeList($event)"
-    >
+    <select v-else class="add-task__select" name="list" @change="changeList($event)">
       <option class="add-task__option" :value="choosenListByPath">
         {{ choosenListByPath }}
       </option>
@@ -58,8 +39,14 @@ export default {
     addTask() {
       this.task.name = this.newTodo;
       this.task.list = this.list;
-      this.$store.dispatch("addTask", this.task);
       this.newTodo = "";
+      if (!this.task.name.length) {
+        this.currentPlaceholder = "Input something!"
+      } else {
+        this.$store.dispatch("addTask", this.task);
+        this.currentPlaceholder = "Add task...";
+      }
+
     },
     changeList(event) {
       this.list = event.target.value;
@@ -81,7 +68,13 @@ export default {
     // this.changePlaceholder();
   },
   updated() {
-    this.list = this.$route.path.slice(1);
+    let routePath = this.$route.path;
+    if (routePath == '' || routePath == '/') {
+      routePath = 'Default';
+    } else {
+      routePath = routePath.slice(1);
+    }
+    this.list = routePath
   },
 };
 </script>

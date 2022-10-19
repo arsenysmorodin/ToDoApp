@@ -34,7 +34,9 @@ export default {
     padding: 50px 50px 50px 50px;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 1920px;
     width: 100vw;
     background: $background-color;
 }

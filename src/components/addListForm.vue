@@ -1,6 +1,7 @@
 <template>
   <div class="add-list">
-    <input class="add-list__input" placeholder="Add list" type="text" v-model="newList" />
+    <input class="add-list__input" @keyup.enter="addList" :placeholder="currentPlaceholder" type="text"
+      v-model="newList" />
     <button class="add-list__btn" @click="addList"></button>
   </div>
 </template>
@@ -10,11 +11,16 @@ export default {
   data() {
     return {
       newList: "",
+      currentPlaceholder: "Add list",
     };
   },
   methods: {
     addList() {
-      this.$store.dispatch("addList", this.newList);
+      if (!this.newList.length) {
+        this.currentPlaceholder = 'Input something!';
+      } else {
+        this.$store.dispatch("addList", this.newList);
+      }
       this.newList = "";
     },
   },
